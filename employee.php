@@ -23,7 +23,7 @@
         require('config/config.php');
         require('config/db.php');
 
-        $query = "SELECT * FROM office ORDER BY name";
+        $query = "SELECT employee.lastname, employee.firstname, employee.address, office.name as office_name FROM employee, office where employee.office_id = office.id";
         $result = mysqli_query($conn, $query);
         $offices = mysqli_fetch_all($result, MYSQLI_ASSOC);
         mysqli_free_result($result);
@@ -32,6 +32,11 @@
         ?>
     <div class="wrapper">
         <div class="sidebar" data-image="../assets/img/sidebar-5.jpg">
+            <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
+
+        Tip 2: you can also add an image using data-image tag
+    -->
             <div class="sidebar-wrapper">
                 <?php include('includes/sidebar.php'); ?>
 
@@ -39,8 +44,10 @@
             </div>
         </div>
         <div class="main-panel">
+            <!-- Navbar -->
             <?php include('includes/navbar.php'); ?>
             
+            <!-- End Navbar -->
             <div class="content">
                 <div class="container-fluid">
                     <div class="section">
@@ -49,30 +56,24 @@
                         <div class="col-md-12">
                             <div class="card strpied-tabled-with-hover">
                                 <div class="card-header ">
-                                    <h4 class="card-title">Striped Table with Hover</h4>
+                                    <h4 class="card-title">Employee</h4>
                                     <p class="card-category">Here is a subtitle for this table</p>
                                 </div>
                                 <div class="card-body table-full-width table-responsive">
                                     <table class="table table-hover table-striped">
                                         <thead>
-                                            <th>Name</th>
-                                            <th>Contact Number</th>
-                                            <th>Email</th>
+                                            <th>Last Name</th>
+                                            <th>First Name</th>
                                             <th>Address</th>
-                                            <th>City</th>
-                                            <th>Country</th>
-                                            <th>Postal code</th>
+                                            <th>Office</th>
                                         </thead>
                                         <tbody>
                                             <?php foreach ($offices as $office) : ?>
                                             <tr>
-                                                <td><?php echo $office ['name']; ?></td>
-                                                <td><?php echo $office ['contactnum']; ?></td>
-                                                <td><?php echo $office ['email']; ?></td>
+                                                <td><?php echo $office ['lastname']; ?></td>
+                                                <td><?php echo $office ['firstname']; ?></td>
                                                 <td><?php echo $office ['address']; ?></td>
-                                                <td><?php echo $office ['city']; ?></td>
-                                                <td><?php echo $office ['country']; ?></td>
-                                                <td><?php echo $office ['postal']; ?></td>
+                                                <td><?php echo $office ['office_name']; ?></td>
                                             </tr>
                                                 <?php endforeach ?>
                                         </tbody>
@@ -120,85 +121,6 @@
             </footer>
         </div>
     </div>
-    <!--   -->
-    <!-- <div class="fixed-plugin">
-    <div class="dropdown show-dropdown">
-        <a href="#" data-toggle="dropdown">
-            <i class="fa fa-cog fa-2x"> </i>
-        </a>
-
-        <ul class="dropdown-menu">
-			<li class="header-title"> Sidebar Style</li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger">
-                    <p>Background Image</p>
-                    <label class="switch">
-                        <input type="checkbox" data-toggle="switch" checked="" data-on-color="primary" data-off-color="primary"><span class="toggle"></span>
-                    </label>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="adjustments-line">
-                <a href="javascript:void(0)" class="switch-trigger background-color">
-                    <p>Filters</p>
-                    <div class="pull-right">
-                        <span class="badge filter badge-black" data-color="black"></span>
-                        <span class="badge filter badge-azure" data-color="azure"></span>
-                        <span class="badge filter badge-green" data-color="green"></span>
-                        <span class="badge filter badge-orange" data-color="orange"></span>
-                        <span class="badge filter badge-red" data-color="red"></span>
-                        <span class="badge filter badge-purple active" data-color="purple"></span>
-                    </div>
-                    <div class="clearfix"></div>
-                </a>
-            </li>
-            <li class="header-title">Sidebar Images</li>
-
-            <li class="active">
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="../assets/img/sidebar-1.jpg" alt="" />
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="../assets/img/sidebar-3.jpg" alt="" />
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="..//assets/img/sidebar-4.jpg" alt="" />
-                </a>
-            </li>
-            <li>
-                <a class="img-holder switch-trigger" href="javascript:void(0)">
-                    <img src="../assets/img/sidebar-5.jpg" alt="" />
-                </a>
-            </li>
-
-            <li class="button-container">
-                <div class="">
-                    <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard" target="_blank" class="btn btn-info btn-block btn-fill">Download, it's free!</a>
-                </div>
-            </li>
-
-            <li class="header-title pro-title text-center">Want more components?</li>
-
-            <li class="button-container">
-                <div class="">
-                    <a href="http://www.creative-tim.com/product/light-bootstrap-dashboard-pro" target="_blank" class="btn btn-warning btn-block btn-fill">Get The PRO Version!</a>
-                </div>
-            </li>
-
-            <li class="header-title" id="sharrreTitle">Thank you for sharing!</li>
-
-            <li class="button-container">
-				<button id="twitter" class="btn btn-social btn-outline btn-twitter btn-round sharrre"><i class="fa fa-twitter"></i> · 256</button>
-                <button id="facebook" class="btn btn-social btn-outline btn-facebook btn-round sharrre"><i class="fa fa-facebook-square"></i> · 426</button>
-            </li>
-        </ul>
-    </div>
-</div>
- -->
 </body>
 <!--   Core JS Files   -->
 <script src="assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>

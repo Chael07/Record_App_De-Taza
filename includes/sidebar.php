@@ -11,13 +11,13 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./user.html">
+                        <a class="nav-link" href="./office.php">
                             <i class="nc-icon nc-bell-55"></i>
                             <p>Office</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./user.html">
+                        <a class="nav-link" href="./employee.php">
                             <i class="nc-icon nc-bell-55"></i>
                             <p>Employee</p>
                         </a>
