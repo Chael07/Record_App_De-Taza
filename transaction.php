@@ -28,7 +28,7 @@
         $results_per_page = 25;
 
         //find the toal number of results/rows stored in database
-        $query = "SELECT * FROM transaction";
+        $query = "SELECT * FROM transactions";
         $result = mysqli_query($conn, $query);
         $number_of_result = mysqli_num_rows($result);
 
@@ -46,8 +46,8 @@
         $page_first_result = ($page-1) * $results_per_page;
 
         // Create Query
-        $query = 'SELECT transaction.datelog, transaction.documentcode, transaction.action, transaction.remarks, office.name as office_name, CONCAT(employee.lastname, ", ", employee.firstname) as employee_fullname FROM employee, office, transaction 
-        WHERE transaction.employee_id=employee.id and transaction.office_id=office.id ORDER BY transaction.documentcode, transaction.datelog LIMIT '. $page_first_result .',' . $results_per_page . '';
+        $query = 'SELECT transactions.datelog, transactions.documentcode, transactions.action, transactions.remarks, office.name as office_name, CONCAT(employee.lastname, ", ", employee.firstname) as employee_fullname FROM employee, office, transactions 
+        WHERE transactions.employee_id=employee.id and transactions.office_id=office.id ORDER BY transactions.documentcode, transactions.datelog LIMIT '. $page_first_result .',' . $results_per_page . '';
 
         // Get the result
         $result = mysqli_query($conn, $query);
